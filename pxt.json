@@ -4,7 +4,8 @@
     "description": "",
     "dependencies": {
         "device": "*",
-        "animation": "*"
+        "animation": "*",
+        "Master chief's adventure": "github:gamemaker5000/master-chiefs-adventure#v0.1.0"
     },
     "files": [
         "main.blocks",
