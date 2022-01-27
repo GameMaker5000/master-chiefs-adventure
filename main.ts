@@ -3,22 +3,22 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fire, 500)
-    otherSprite.setFlag(SpriteFlag.AutoDestroy, true)
+    music.siren.play()
     info.changeScoreBy(1)
+    otherSprite.destroy()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    otherSprite.setFlag(SpriteFlag.AutoDestroy, true)
     info.changeLifeBy(-1)
-    music.knock.play()
     scene.cameraShake(4, 500)
+    music.knock.play()
+    otherSprite.destroy()
 })
 let zombies: Sprite = null
 let bullets: Sprite = null
 let Master_chief: Sprite = null
 Master_chief = sprites.create(assets.image`Master chief`, SpriteKind.Player)
-controller.moveSprite(Master_chief)
+controller.moveSprite(Master_chief, 150, 150)
 Master_chief.setStayInScreen(true)
-info.setLife(3)
 scene.setBackgroundImage(img`
     3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
     3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
@@ -141,6 +141,7 @@ scene.setBackgroundImage(img`
     dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
     dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
     `)
+info.setLife(3)
 game.onUpdateInterval(1000, function () {
     zombies = sprites.create(assets.image`zombie head`, SpriteKind.Enemy)
     zombies.setVelocity(-100, 0)
