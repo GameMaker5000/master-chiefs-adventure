@@ -3,7 +3,6 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
     otherSprite.destroy(effects.fire, 500)
-    music.siren.play()
     info.changeScoreBy(1)
     otherSprite.destroy()
 })
